@@ -101,7 +101,6 @@ public class Number_game {
 				break;
 
 			}
-			//
 
 		}
 	}
