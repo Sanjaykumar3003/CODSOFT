@@ -19,7 +19,7 @@ public class MarkGrade {
 			try {
 
 				Scanner scan = new Scanner(System.in);
-				System.out.println("Enter Totel Number of the Subject : ");
+				System.out.println("Enter Total Number of the Subject : ");
 
 				int t_Sub = scan.nextInt();
 
@@ -28,6 +28,8 @@ public class MarkGrade {
 					String subject = null;
 
 					double sub_mark = 0;
+
+					Properties p = new Properties();
 					for (int i = 0; i < t_Sub; i++) {
 
 						System.out.println("Enter the Subject name : ");
@@ -41,8 +43,6 @@ public class MarkGrade {
 						double mark = scan.nextDouble();
 						System.out.println(subject + " mark is :" + mark);
 
-						Properties p = new Properties();
-
 						sub_mark += mark;
 
 						String marks = Double.toString(mark);
@@ -50,9 +50,9 @@ public class MarkGrade {
 						p.put("Subject", subject);
 						p.put("Mark", marks);
 
-						FileOutputStream fos = new FileOutputStream("property\\userdata.properties", true);
-
-						p.store(fos, "Data was Stored");
+//						FileOutputStream fos = new FileOutputStream("property\\userdata.properties", true);
+//
+//						p.store(fos, "Data was Stored");
 
 					}
 
@@ -84,16 +84,29 @@ public class MarkGrade {
 					System.out.println("Average Percentage: " + percentage + "%");
 					System.out.println("Grade: " + grade);
 
+					p.put("Results",":");
+					p.put("Total Mark :", sub_mark);
+					p.put("Average Percentage : ", percentage);
+					p.put("Grade :", grade);
+
+					FileOutputStream fos = new FileOutputStream("property\\userdata1.properties", true);
+
+					p.store(fos, "Data was Stored");
+
+					System.out.println("Thank you For using this Application");
+
+					break;
+
 				}
 
 				else {
 					System.out.println(" its Support less then 10 Subject ,So Enter the valid Number");
 				}
+
 			} catch (Exception e) {
 				System.out.println("Enter the valid Number!!");
+				execution = false;
 			}
-
-			execution = true;
 
 		}
 	}
